@@ -6,7 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CasosTesteFuncionalJUnit4 {
+public class CasosTesteFuncionalJUnit4Test {
 
 	@Before
 	public void setUp() throws Exception {
