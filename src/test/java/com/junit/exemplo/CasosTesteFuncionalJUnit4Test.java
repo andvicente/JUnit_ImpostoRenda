@@ -69,4 +69,11 @@ public class CasosTesteFuncionalJUnit4Test {
 		assertEquals(result, 150.25, .0);
 	}
 
+	@Test
+	public void Salario3000() {
+		Servidor s = new Servidor("P", 1, 3000, 150);
+		double result = s.calculaIR();
+		assertEquals(result, 400.0, .0);
+	}
+
 }

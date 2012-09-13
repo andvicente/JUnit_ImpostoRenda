@@ -33,27 +33,27 @@ public class Servidor {
 	protected int codigo;
 	protected float adicional;
 
-	public Servidor(String tmpAt, int tmpC, float tmpS, float tmpAd) {
-		this.atividade = tmpAt;
-		this.salario = tmpS;
-		this.codigo = tmpC;
-		this.adicional = tmpAd;
+	public Servidor(String atividade, int codigo, float salario, float adicional) {
+		this.atividade = atividade;
+		this.codigo = codigo;
+		this.salario = salario;
+		this.adicional = adicional;
 	}
 
-	public void setAtividade(String tmpAt) {
-		this.atividade = tmpAt;
+	public void setAtividade(String atividade) {
+		this.atividade = atividade;
 	}
 
-	public void setSalario(float tmpS) {
-		this.salario = tmpS;
+	public void setSalario(float salario) {
+		this.salario = salario;
 	}
 
-	public void setCodigo(int tmpC) {
-		this.codigo = tmpC;
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
 	}
 
-	public void setAdicional(float tmpAd) {
-		this.adicional = tmpAd;
+	public void setAdicional(float adicional) {
+		this.adicional = adicional;
 	}
 
 	public int getCodigo() {
