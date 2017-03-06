@@ -72,48 +72,33 @@ public class Servidor {
 		return this.adicional;
 	}
 
-	// /** Calcula IR de acordo com salario base */
-	// public double calculaIR() {
-	// double ret = 0;
-	// if ( this.salario > 2000 )
-	// ret = (150) + (this.salario - 2000) * (0.25);
-	// else if( this.salario > 1000 )
-	// ret = (this.salario - 1000) * (0.15);
-	// return ret;
-	// }
-
 	/** Calcula IR de acordo com salario base */
 	public double calculaIR() {
-		double ret = 0;
-
-		if (this.salario > 1000)
-			ret = (this.salario - 1000) * (0.15);
-
-		if (this.salario > 2000)
-			ret = ret + (this.salario - 2000) * (0.10);
-
-		if (this.salario > 3000)
-			ret = ret + (this.salario - 3000) * (0.05);
-
-		return ret;
+		if (this.salario < 1000)
+			return 0;
+		else if (this.salario >= 1000 && this.salario <= 2000)
+			return (this.salario - 1000) * (0.15);
+		else if (salario > 2000)
+			return 150 + (this.salario - 2000) * (0.25);
+		return 0;
 	}
 
-	/** Calcula salario de acordo com a atividade do Servidor */
-	public double calculaSalarioLiquido() {
-		double ret = this.salario;
+    /** Calcula salario de acordo com a atividade do Servidor */
+	public double calculaSalarioLiquidoServidor(){
+		double IR = this.calculaIR();
+        double salarioBruto = this.salario;
 
-		double ir = this.calculaIR();
+        if (this.getAtividade().toUpperCase().equals("P"))
+            salarioBruto = this.salario * (1 + this.adicional / 100);
+        else if (this.getAtividade().toUpperCase().equals("F"))
+            salarioBruto = this.salario * (float) (1 + 0.2);
 
-		if (this.getAtividade().toUpperCase().equals("P"))
-			ret = this.salario * (1 + this.adicional / 100); // utiliza
-																// adicional
-		else if (this.getAtividade().toUpperCase().equals("F"))
-			ret = this.salario * (float) (1 + 0.2); // adicional fixo
+        System.out.println("Salário Bruto: " + salarioBruto);
 
-		ret = ret - ir;
+        return salarioBruto - IR;
 
-		return ret;
-	}
+    }
+
 
 	public String print() {
 		return "Codigo: " + getCodigo() + "   Atividade: " + getAtividade()
