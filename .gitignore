@@ -6,4 +6,5 @@
 *.ear
 *.idea
 *.gradle
+*.settings
 gradle/
