@@ -1,0 +1,22 @@
+group 'com.junit.examplo'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: "jacoco"
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+}

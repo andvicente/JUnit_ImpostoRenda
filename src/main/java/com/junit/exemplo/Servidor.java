@@ -1,26 +1,26 @@
 /**
- * EspecificaÁ„o: Deseja-se calcular o sal·rio lÌquido dos servidores de uma determina 
- * instituiÁ„o p˙blica. Existem 3 tipos de funcion·rios: Professor(P), Funcion·rio(F) e 
- * Outro(O). Cada tipo de servidor pode receber um adicional alÈm do seu sal·rio base. 
+ * Especifica√ß√£o: Deseja-se calcular o sal√°rio l√≠quido dos servidores de uma determina 
+ * institui√ß√£o p√∫blica. Existem 3 tipos de funcion√°rios: Professor(P), Funcion√°rio(F) e 
+ * Outro(O). Cada tipo de servidor pode receber um adicional al√©m do seu sal√°rio base. 
  * 
- * O sal·rio de cada tipo de servidor È calculado da seguinte forma:
+ * O sal√°rio de cada tipo de servidor √© calculado da seguinte forma:
  * 
- * P: Sal·rio-base + adicional vari·vel - IR
- * F: Sal·rio-base + adicional fixo - IR
- * O: Sal·rio-base - IR
+ * P: Sal√°rio-base + adicional vari√°vel - IR
+ * F: Sal√°rio-base + adicional fixo - IR
+ * O: Sal√°rio-base - IR
  * 
- * O IR (Imposto de Renda) È calculado da seguinte forma:
+ * O IR (Imposto de Renda) √© calculado da seguinte forma:
  * 
- * se sal·rio-base > 2000 
- *   IR = (150) + (sal·rio-base - 2000) * 25%
+ * se sal√°rio-base > 2000 
+ *   IR = (150) + (sal√°rio-base - 2000) * 25%
  * 
- * se 1000 < sal·rio-base <= 2000
- *   IR = (sal·rio-base - 1000) * 15%  	  
+ * se 1000 < sal√°rio-base <= 2000
+ *   IR = (sal√°rio-base - 1000) * 15%  	  
  * 
- * se sal·rio-base <= 1000
+ * se sal√°rio-base <= 1000
  *   IR = 0
  * 
- * Observa-se, portanto, que o IR n„o incide sobre os adicionais recebidos.
+ * Observa-se, portanto, que o IR n√£o incide sobre os adicionais recebidos.
  *   
  */
 
@@ -86,16 +86,25 @@ public class Servidor {
     /** Calcula salario de acordo com a atividade do Servidor */
 	public double calculaSalarioLiquidoServidor(){
 		double IR = this.calculaIR();
-        double salarioBruto = this.salario;
-
+        double salarioBase = this.salario;
+        double salarioBruto = 0;
         if (this.getAtividade().toUpperCase().equals("P"))
-            salarioBruto = this.salario * (1 + this.adicional / 100);
+            salarioBruto = salarioBase * (1 + this.adicional / 100);
         else if (this.getAtividade().toUpperCase().equals("F"))
-            salarioBruto = this.salario * (float) (1 + 0.2);
+            salarioBruto = salarioBase * (float) (1 + 0.2);
 
-        System.out.println("Sal·rio Bruto: " + salarioBruto);
+        double salarioLiquido = salarioBruto - IR;
 
-        return salarioBruto - IR;
+
+        System.out.println("************************************");
+        System.out.println("Sal√°rio Base   : " + salarioBase);
+        System.out.println("Sal√°rio Bruto  : " + salarioBruto);
+        System.out.println("IR (sob base)  : " + IR);
+        System.out.println("Salario Liquido: " + salarioLiquido);
+        System.out.println("************************************");
+
+
+        return salarioLiquido;
 
     }
 
