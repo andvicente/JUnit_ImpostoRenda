@@ -26,6 +26,9 @@
 
 package com.junit.exemplo;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class Servidor {
 
 	protected String atividade;
@@ -84,27 +87,29 @@ public class Servidor {
 	}
 
     /** Calcula salario de acordo com a atividade do Servidor */
-	public double calculaSalarioLiquidoServidor(){
+	public BigDecimal calculaSalarioLiquidoServidor(){
 		double IR = this.calculaIR();
         double salarioBase = this.salario;
         double salarioBruto = 0;
-        if (this.getAtividade().toUpperCase().equals("P"))
+        if (this.getAtividade().toUpperCase().equals("P")) //PROFESSOR
             salarioBruto = salarioBase * (1 + this.adicional / 100);
-        else if (this.getAtividade().toUpperCase().equals("F"))
+        else if (this.getAtividade().toUpperCase().equals("F")) //FUNCIONARIO
             salarioBruto = salarioBase * (float) (1 + 0.2);
 
         double salarioLiquido = salarioBruto - IR;
+        
+		BigDecimal salarioBrutoDecimal = new BigDecimal(salarioBruto).setScale(2,RoundingMode.HALF_DOWN);
+		BigDecimal salario = new BigDecimal(salarioLiquido).setScale(2, RoundingMode.HALF_DOWN);
+
+		System.out.println("************************************");
+		System.out.println("Salário Base   : " + salarioBase);
+		System.out.println("Salário Bruto  : " + salarioBrutoDecimal);
+		System.out.println("IR (sob base)  : " + IR);
+		System.out.println("Salario Liquido: " + salario);
+		System.out.println("************************************");
 
 
-        System.out.println("************************************");
-        System.out.println("Salário Base   : " + salarioBase);
-        System.out.println("Salário Bruto  : " + salarioBruto);
-        System.out.println("IR (sob base)  : " + IR);
-        System.out.println("Salario Liquido: " + salarioLiquido);
-        System.out.println("************************************");
-
-
-        return salarioLiquido;
+        return salario;
 
     }
 
